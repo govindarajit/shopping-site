@@ -1,0 +1,39 @@
+<div class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Angular App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="nav  nav-fill">
+      <li class="nav-item">
+        <a class="nav-link " [routerLink]="['/']">Store</a>
+      </li>
+    </ul>
+    <ul class="nav  nav-fill">
+      <li class="nav-item" *ngIf="cart.total>0">
+        <a class="nav-link" [routerLink]="['/cart']">
+          {{cart.totalItems}} Items, {{cart.total}} INR
+        </a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/login']" *ngIf="authService.user==undefined">Login</a>
+      </li>
+    </ul>
+    <ul style="left: 67%;align-items: end;position: relative;" class="nav  nav-fill" *ngIf="authService.user!==undefined">
+      <li class="nav-item" style="padding: 15px;">
+        Welcome : {{authService.user.name}}
+      </li>
+      <li class="nav-item">
+        <a href="javascript:void(0)" class="nav-link" (click)="signout()">SignOut</a>
+      </li>
+    </ul>
+  </div>
+
+</div>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
